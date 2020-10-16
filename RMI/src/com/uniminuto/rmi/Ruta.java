@@ -1,3 +1,4 @@
+package com.uniminuto.rmi;
 
 
 import java.io.Serializable;
@@ -13,8 +14,7 @@ public class Ruta implements Serializable {
 	private String paisOrigen;
 	private String PaisDestino;
 	private Tiempo tiempo;
-	private ArrayList<Avion> aviones;
-	private ArrayList<Ruta> rutas;
+	
 	public static long getSerialversionuid() {
 		return serialVersionUID;
 	}
@@ -39,18 +39,6 @@ public class Ruta implements Serializable {
 	public void setTiempo(Tiempo tiempo) {
 		this.tiempo = tiempo;
 	}
-	public ArrayList<Avion> getAviones() {
-		return aviones;
-	}
-	public void setAviones(ArrayList<Avion> aviones) {
-		this.aviones = aviones;
-	}
-	public ArrayList<Ruta> getRutas() {
-		return rutas;
-	}
-	public void setRutas(ArrayList<Ruta> rutas) {
-		this.rutas = rutas;
-	}
-	
+
 	
 }

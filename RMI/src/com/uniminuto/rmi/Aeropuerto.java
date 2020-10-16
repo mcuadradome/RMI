@@ -1,28 +1,29 @@
+package com.uniminuto.rmi;
 
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Map;
 
 public class Aeropuerto implements Serializable {
 
 	/**
 	 * 
 	 */
-	private static long serialVersionUID = 9088206843315557477L;
-	
-	private Pais pais;
+	private static final long serialVersionUID = 1L;
+
+	private String pais;
 	private ArrayList<Avion> aviones;
-	private ArrayList<Ruta> rutas;
+	private Map<String,Ruta> rutas;
+	
 	public static long getSerialversionuid() {
 		return serialVersionUID;
 	}
-	public static void setSerialversionuid(long serialversionuid) {
-		serialVersionUID = serialversionuid;
-	}
-	public Pais getPais() {
+
+	public String getPais() {
 		return pais;
 	}
-	public void setPais(Pais pais) {
+	public void setPais(String pais) {
 		this.pais = pais;
 	}
 	public ArrayList<Avion> getAviones() {
@@ -31,13 +32,14 @@ public class Aeropuerto implements Serializable {
 	public void setAviones(ArrayList<Avion> aviones) {
 		this.aviones = aviones;
 	}
-	public ArrayList<Ruta> getRutas() {
+	
+	public Map<String, Ruta> getRutas() {
 		return rutas;
 	}
-	public void setRutas(ArrayList<Ruta> rutas) {
+	public void setRutas(Map<String, Ruta> rutas) {
 		this.rutas = rutas;
 	}
-	
+
 	
 
 }

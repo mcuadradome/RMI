@@ -1,3 +1,4 @@
+package com.uniminuto.rmi;
 
 
 import java.net.MalformedURLException;
@@ -30,7 +31,7 @@ public class Server {
 		//	registro.rebind(VueloImpl.RMI_NAME, server);
 		//	Registry reg = LocateRegistry.getRegistry("127.0.0.1", 1099);
 			
-			Naming.rebind("rmi://127.0.0.1:5000/rmiServer", server);  
+			Naming.rebind("rmi://192.168.1.185:6789/rmiServer", server);  
 		
 //            IVuelo stub = (IVuelo) UnicastRemoteObject.exportObject(server, 0);  
 //            Registry registry = LocateRegistry.getRegistry(); 
