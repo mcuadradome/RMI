@@ -69,6 +69,12 @@ public class Avion implements Serializable{
 	public void setModelo(String modelo) {
 		this.modelo = modelo;
 	}
+
+	@Override
+	public String toString() {
+		return "Avion [ruta=" + ruta + ", matricula=" + matricula + ", modelo=" + modelo + ", pasajeros=" + pasajeros
+				+ ", fechaVuelo=" + fechaVuelo + "]";
+	}
 	
 	
 	

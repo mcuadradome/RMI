@@ -18,10 +18,6 @@ import java.util.Map;
 import java.util.Scanner;
 import java.util.spi.CalendarNameProvider;
 
-import com.sun.org.apache.xerces.internal.impl.dv.xs.IntegerDV;
-
-import jdk.management.cmm.SystemResourcePressureMXBean;
-import sun.util.calendar.BaseCalendar.Date;
 
 public class Client {
 
@@ -34,7 +30,7 @@ public class Client {
 
 			//System.out.println("Buscando Objeto ");
 			
-			look_up = (IVuelo) Naming.lookup("rmi://192.168.1.185:6789/rmiServer");
+			look_up = (IVuelo) Naming.lookup("rmi://localhost:5000/rmiServer");
 			
 			BufferedReader obj = new BufferedReader(new InputStreamReader(System.in));
 			String aeropuerto=null, pais=null, numeroDespegue=null, destino;
@@ -57,29 +53,42 @@ public class Client {
 				Aeropuerto oAeropuerto = new Aeropuerto();
 				
 				for (int i = 0; i < num; i++) {
+					System.out.println("Ingrese Matricula");
+					String matricula = obj.readLine();
+					Avion avio = look_up.findAvion(pais, matricula);
+					if(avio != null) {
+						System.out.println("Vuelo " + avio.toString() + "Ya despego");
+					}else {
+						Avion avi = avion.get(i);
+						avi.setMatricula(matricula);
+						
+						Ruta ruta = new Ruta();
+						
+						System.out.println("Ingrese Destino para salida " + i+1 + " Avion " + avi.getMatricula());
+						destino = obj.readLine();
+						Ruta rt= look_up.findRuta(pais, matricula);
+						if(rt != null) {
+							System.out.println("Ruta ya en uso " + rt.toString());
+						}else {
+							Tiempo tiempo = new Tiempo();
+							tiempo.setHora(Utils.getRandomHora(1,5));
+							tiempo.setMinuto(Utils.getRandomHora(1,59));
+							tiempo.setSegundos(Utils.getRandomHora(1,59));					
+						
+							ruta.setTiempo(tiempo);
+							ruta.setPaisOrigen(pais);
+							ruta.setPaisDestino(destino);
+							
+							String timeStamp = new SimpleDateFormat("yyyy-MM-dd").format(Calendar.getInstance().getTime());
+							avi.setFechaVuelo(timeStamp);
+							avi.setRuta(ruta);
+							
+							listAviones.add(avi);
+							listRuta.add(ruta);
+							rutasMap.put(pais+"-"+destino, ruta);
+						}
+					}
 					
-					Avion avi = avion.get(i);
-					Ruta ruta = new Ruta();
-					
-					System.out.println("Ingrese Destino para salida " + i+1 + " Avion " + avi.getMatricula());
-					destino = obj.readLine();
-					
-					Tiempo tiempo = new Tiempo();
-					tiempo.setHora(Utils.getRandomHora(1,5));
-					tiempo.setMinuto(Utils.getRandomHora(1,59));
-					tiempo.setSegundos(Utils.getRandomHora(1,59));					
-				
-					ruta.setTiempo(tiempo);
-					ruta.setPaisOrigen(pais);
-					ruta.setPaisDestino(destino);
-					
-					String timeStamp = new SimpleDateFormat("yyyy-MM-dd").format(Calendar.getInstance().getTime());
-					avi.setFechaVuelo(timeStamp);
-					avi.setRuta(ruta);
-					
-					listAviones.add(avi);
-					listRuta.add(ruta);
-					rutasMap.put(avi.getMatricula(), ruta);
 				}
 				
 				Rutas rutas = new Rutas();

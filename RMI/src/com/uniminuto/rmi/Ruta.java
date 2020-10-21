@@ -39,6 +39,10 @@ public class Ruta implements Serializable {
 	public void setTiempo(Tiempo tiempo) {
 		this.tiempo = tiempo;
 	}
+	@Override
+	public String toString() {
+		return " [paisOrigen=" + paisOrigen + ", PaisDestino=" + PaisDestino + ", tiempo=" + tiempo + "]";
+	}
 
 	
 }

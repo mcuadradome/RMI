@@ -43,7 +43,7 @@ public class Utils {
 	public static List<Avion> createAvion(int size) {
         List<Avion> list = new ArrayList<Avion>();
         for(int i = 0 ; i < size ; i++) {
-            list.add(new Avion(null,getRandomMatricula(), getRandomBrand(), getRandomPasajeros(), null));
+            list.add(new Avion(null, null, getRandomBrand(), getRandomPasajeros(), null));
         }
          
         return list;
