@@ -29,8 +29,10 @@ public class Client {
 		try {
 
 			//System.out.println("Buscando Objeto ");
+			//Registry registry = LocateRegistry.getRegistry();
+			IVuelo look_up = (IVuelo) Naming.lookup("//localhost/rmiServer"); 
 			
-			look_up = (IVuelo) Naming.lookup("rmi://localhost:5000/rmiServer");
+			//look_up = (IVuelo) Naming.lookup("rmi://127.0.0.1/rmiServer");
 			
 			BufferedReader obj = new BufferedReader(new InputStreamReader(System.in));
 			String aeropuerto=null, pais=null, numeroDespegue=null, destino;
